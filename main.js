@@ -4,7 +4,7 @@ const dotenv = require('dotenv').config()
 
 
 //WELL DONE NUNUU
-//appreciated
+//now create the folders needed
 
 const port=process.env.PORT  
 
