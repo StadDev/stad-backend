@@ -41,14 +41,15 @@ router.post('/loginUser',async (req,res)=>{
     if (user && (await bcrypt.compare(password,user.password))){
         const {username,id,isAdmin}=user
         const token=jwt.sign({username,id,isAdmin},process.env.SECRET,{expiresIn:"2d"}) 
-    res.status(200).json({user,token})
+ 
+    res.status(200).json({...user._doc,token})
     }else{
         res.status(400)
         throw new Error('invalid user credentials')
     }
 })
 const generateToken = (id) => {
-    return jwt.sign({id},{email,password},process.env.JWT_SECRET,{
+    return jwt.sign({id},process.env.SECRET,{
         
         expiresIn:'2d'
     })
