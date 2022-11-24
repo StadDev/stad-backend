@@ -10,7 +10,7 @@ app.use(cors())
 app.use('/Apihandler/userauth',userauth)
 
 //for now lets nots give it a port in the env (secof hosting purposes)
-const port=process.env.PORT || 7000
+const port=process.env.PORT || 9000
 
 connectDb()
 app.listen(port,()=>{
