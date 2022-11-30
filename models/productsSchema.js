@@ -12,8 +12,7 @@ const productSchema = new mongoose.Schema({
         required:true
     },
     productSize:{
-        type:String,
-        required:true
+        type:array,
     },
     productImage:{
         type:String,
