@@ -9,7 +9,9 @@ const productSchema = new mongoose.Schema({
         type:Array,
         required:true
     },
-
+    uid:{
+        type: String,
+    },
     description:{
         type:String,
         required:true
@@ -24,7 +26,7 @@ const productSchema = new mongoose.Schema({
     },
     terms:{
         type:String,
-        required:true
+        default:true
     }
 
 
