@@ -1,11 +1,12 @@
 const Product=require('../models/productsSchema')
 const router=require('express').Router()
-const {
-  verifyToken,
-}=require('../Middlewares/Verify')
+const {verifyToken,}=require('../Middlewares/Verify')
 
 
-
+router.get('/', async (req,res)=>{
+  const products = await Product.find({product:Product})
+  res.status(200).json(products)
+})
  router.post("/addproducts",verifyToken,async(req, res) => {
     try {
       const {id:userId}=req.user
@@ -34,6 +35,46 @@ const {
     }
   })
 
+  router.put('/updateProducts/:id',verifyToken,async(req,res)=>{
+     try {
+      
+      const updatedProduct =  new Product({
+        _id:req.params.id,
+        productName:req.body.productName,
+        category: req.body.category,
+        description:req.body.description,
+        productSize:req.body.productSize,
+        productImage:req.body.productImage,
+      })
+      Product.findByIdAndUpdate({_id:req.params.id},  updatedProduct).then(
+        () => {
+          res.status(201).json({
+          //so pass in the data here---updatedproduct instead of a msg
+            message: 'product updated successfully!'
+          });
+        }
+      )
+     } catch (error) {
+      res.status(400).json({
+        error:error
+      })
+     }
+  })
+router.delete('/:id',verifyToken,async(req,res)=>{
+  try {
+    Product.deleteOne({_id: req.params.id}).then(
+      () => {
+        res.status(200).json({
+          message: 'Deleted!'
+        });
+      }
+    )
+  } catch (error) {
+    res.status(400).json({
+      error:error
+    })
+  }
+})
 
   
 
