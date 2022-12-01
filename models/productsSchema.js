@@ -5,14 +5,18 @@ const productSchema = new mongoose.Schema({
         type: String,
         required:true,
     },
-    category:[{type:Schema.ObjectId,ref:"Product"}],
+    category:{
+        type:Array,
+        required:true
+    },
 
     description:{
         type:String,
         required:true
     },
     productSize:{
-        type:array,
+        type:Array,
+        required:true
     },
     productImage:{
         type:String,
