@@ -48,10 +48,8 @@ router.get('/', async (req,res)=>{
       })
       Product.findByIdAndUpdate({_id:req.params.id},  updatedProduct).then(
         () => {
-          res.status(201).json({
-          //so pass in the data here---updatedproduct instead of a msg
-            message: 'product updated successfully!'
-          });
+          
+          res.status(201).json(updatedProduct);
         }
       )
      } catch (error) {
