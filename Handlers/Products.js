@@ -46,12 +46,10 @@ router.get('/', async (req,res)=>{
         productSize:req.body.productSize,
         productImage:req.body.productImage,
       })
-      Product.findByIdAndUpdate({_id:req.params.id},  updatedProduct).then(
-        () => {
-          
-          res.status(201).json(updatedProduct);
-        }
-      )
+      
+      updated = await Product.findByIdAndUpdate(updatedProduct)
+      res.status(200).json(updated)
+
      } catch (error) {
       res.status(400).json({
         error:error
