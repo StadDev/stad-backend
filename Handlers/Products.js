@@ -34,7 +34,7 @@ router.get('/', async (req,res)=>{
       res.status(500).json(err);
     }
   })
-//update
+
   router.put('/updateProducts/:id',verifyToken,async(req,res)=>{
      try {
       
