@@ -5,6 +5,7 @@ const User=require('../models/userModel')
 
 
 
+
 //REGISTER USER
 router.post('/registerUser',  async (req,res)=>{
     try {
@@ -48,11 +49,7 @@ router.post('/loginUser',async (req,res)=>{
         throw new Error('invalid user credentials')
     }
 })
-const generateToken = (id) => {
-    return jwt.sign({id},process.env.SECRET,{
-        
-        expiresIn:'2d'
-    })
-}
+
+
 
 module.exports=router
